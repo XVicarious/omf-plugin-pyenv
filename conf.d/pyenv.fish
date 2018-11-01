@@ -12,7 +12,7 @@ else
     set pyenv_root "$PYENV_ROOT"
 end
 
-if status --is-interactive
+if status --is-login
     set -x PATH "$pyenv_root/shims" $PATH
     set -x PYENV_SHELL fish
 end
