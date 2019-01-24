@@ -3,17 +3,20 @@ if not command -s pyenv > /dev/null
     exit 1
 end
 
-set -l pyenv_root ""
+set --local pyenv_root ""
 
 if test -z "$PYENV_ROOT"
     set pyenv_root ~/.pyenv
-    set -x PYENV_ROOT "$pyenv_root"
+    set --export PYENV_ROOT "$pyenv_root"
 else
     set pyenv_root "$PYENV_ROOT"
 end
 
-if status --is-login
-    set -x PATH "$pyenv_root/shims" $PATH
-    set -x PYENV_SHELL fish
+if status --is-interactive
+    if set --local index (contains --index -- $PYENV_ROOT/shims $PATH)
+        set --erase PATH[$index]
+    end
+    set -export PATH "$pyenv_root/shims" $PATH
+    set -export PYENV_SHELL fish
 end
 command mkdir -p "$pyenv_root/"{shims,versions}
