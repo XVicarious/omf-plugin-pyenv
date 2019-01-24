@@ -16,7 +16,7 @@ if status --is-interactive
     if set --local index (contains --index -- $PYENV_ROOT/shims $PATH)
         set --erase PATH[$index]
     end
-    set -export PATH "$pyenv_root/shims" $PATH
-    set -export PYENV_SHELL fish
+    set --export PATH "$pyenv_root/shims" $PATH
+    set --export PYENV_SHELL fish
 end
 command mkdir -p "$pyenv_root/"{shims,versions}
