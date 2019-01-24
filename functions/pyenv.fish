@@ -1,6 +1,6 @@
 function pyenv
     set command $argv[1]
-    set -e argv[1]
+    set --erase argv[1]
 
     switch "$command"
         case (command pyenv commands --sh)
